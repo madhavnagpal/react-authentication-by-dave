@@ -1,0 +1,3 @@
+on register tutorial
+
+5 mins in the tutorial
