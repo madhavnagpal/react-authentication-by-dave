@@ -14,8 +14,8 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/register";
 
 const Register = () => {
-  const userRef = useRef();
-  const errRef = useRef();
+  const userRef = useRef(); // need it to foucs the input to fill data
+  const errRef = useRef(); // need error ref to focus it so it can be announced by accebility
 
   const [user, setUser] = useState("");
   const [validName, setValidName] = useState(false);
