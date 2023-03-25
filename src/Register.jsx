@@ -33,7 +33,7 @@ const Register = () => {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    userRef.current.focus();
+    userRef.current.focus(); // setting focus on username input on mount
   }, []);
 
   useEffect(() => {
@@ -101,8 +101,8 @@ const Register = () => {
         <section>
           <p
             ref={errRef}
-            className={errMsg ? "errmsg" : "offscreen"}
-            aria-live="assertive"
+            className={errMsg ? "errmsg" : "offscreen"} // will be accessible by screen readers
+            aria-live="assertive" // when foucsed the announced by the screen reader
           >
             {errMsg}
           </p>
@@ -123,12 +123,12 @@ const Register = () => {
               type="text"
               id="username"
               ref={userRef}
-              autoComplete="off"
+              autoComplete="off" //we don't want to see previous values field suggested that others might have added
               onChange={(e) => setUser(e.target.value)}
               value={user}
               required
-              aria-invalid={validName ? "false" : "true"}
-              aria-describedby="uidnote"
+              aria-invalid={validName ? "false" : "true"} //lets screen reader announce that this field needs readjusted before from is submitted
+              aria-describedby="uidnote" // element of id uidnote will be announced
               onFocus={() => setUserFocus(true)}
               onBlur={() => setUserFocus(false)}
             />
