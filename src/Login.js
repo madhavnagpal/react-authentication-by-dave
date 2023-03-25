@@ -1,11 +1,11 @@
 import { useRef, useState, useEffect, useContext } from "react";
-// import AuthContext from "./context/AuthProvider";
+import AuthContext from "./context/AuthProvider";
 
 import axios from "./api/axios";
 const LOGIN_URL = "/auth";
 
 const Login = () => {
-  // const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -38,7 +38,7 @@ const Login = () => {
       //console.log(JSON.stringify(response));
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
-      // setAuth({ user, pwd, roles, accessToken });
+      setAuth({ user, pwd, roles, accessToken });
       setUser("");
       setPwd("");
       setSuccess(true);
