@@ -1,6 +1,11 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
+/*
+state={{ from: location }} 
+sending this helps to redirect user to page he requested after he is logged in
+*/
+
 const RequireAuth = ({ allowedRoles }) => {
   const { auth } = useAuth();
   const location = useLocation();
