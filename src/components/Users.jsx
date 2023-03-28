@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
-import useRefreshToken from "../hooks/useRefreshToken";
 
 function Users(props) {
   const [users, setUsers] = useState();
-  const refresh = useRefreshToken();
 
   useEffect(() => {
     let isMounted = true;
