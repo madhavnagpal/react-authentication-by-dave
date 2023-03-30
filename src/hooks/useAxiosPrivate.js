@@ -8,6 +8,17 @@ function useAxiosPrivate() {
   const { auth } = useAuth();
 
   useEffect(() => {
+    const requestIntercept = axiosPrivate.interceptors.request.use(
+      (config) => {
+        // for first time when authorization header is not set
+        if (!config.headers["Authorization"]) {
+          config.headers["Authorization"] = `Bearer ${auth?.accessToken}`;
+        }
+        return config;
+      },
+      (error) => Promise.reject(error)
+    );
+
     const responseIntercept = axiosPrivate.interceptors.response.use(
       (response) => response,
       async (error) => {
@@ -19,8 +30,15 @@ function useAxiosPrivate() {
           previousRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
           return axiosPrivate(previousRequest); // what if we dont come in request due to sent the how are we retrying ??
         }
+
+        return Promise.reject(error);
       }
     );
+
+    return () => {
+      axiosPrivate.interceptors.request.eject(requestIntercept);
+      axiosPrivate.interceptors.response.eject(responseIntercept);
+    };
   }, [auth, refresh]);
 
   return axiosPrivate;
