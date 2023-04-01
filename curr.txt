@@ -1,3 +1,2 @@
-on register tutorial
-
-10 mins in the tutorial
+on persistent tutorial
+15 min

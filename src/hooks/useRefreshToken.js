@@ -13,7 +13,11 @@ function useRefreshToken() {
         " prev state of auth - in useRefreshToken"
       );
       console.log(response.data.accessToken);
-      return { ...prev, accessToken: response.data.accessToken };
+      return {
+        ...prev,
+        roles: response.data.roles,
+        accessToken: response.data.accessToken,
+      };
     });
     return response.data.accessToken;
   };
